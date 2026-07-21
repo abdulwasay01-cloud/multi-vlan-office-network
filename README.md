@@ -8,7 +8,7 @@ This project simulates a small company with four departments — **IT, Sales, Fi
 
 ## Network Topology
 
-![Network Topology] 
+![Network Topology](./screenshots/01-topology.png)
 
 - **Router0** connects to **Switch0** via a single trunk link (Router-on-a-Stick)
 - **Switch0** and **Switch1** are connected via a trunk link, extending all VLANs across both switches
@@ -29,7 +29,7 @@ Base network `192.168.100.0/24` subnetted into four `/26` blocks:
 ## Device Configuration
 
 ### Switch0 — VLANs & Trunking
-![Switch0 VLAN and Trunk]
+![Switch0 VLAN and Trunk](./screenshots/02-switch0-vlan-trunk.png)
 
 ```
 vlan 10
@@ -59,7 +59,7 @@ interface fa0/4
 ```
 
 ### Switch1 — VLANs & Trunking
-![Switch1 VLAN and Trunk]
+![Switch1 VLAN and Trunk](./screenshots/03-switch1-vlan-trunk.png)
 
 ```
 vlan 10
@@ -85,7 +85,7 @@ interface fa0/4
 ```
 
 ### Router0 — Router-on-a-Stick (Sub-interfaces)
-![Router0 Sub-interfaces]
+![Router0 Sub-interfaces](./screenshots/04-router0-subinterfaces.png)
 
 ```
 interface gi0/0.10
@@ -106,8 +106,8 @@ interface gi0/0.40
 ```
 
 ### Port Security (Switch0 & Switch1)
-![Switch0 Port Security]
-![Switch1 Port Security]
+![Switch0 Port Security](./screenshots/05-switch0-port-security.png)
+![Switch1 Port Security](./screenshots/06-switch1-port-security.png)
 
 ```
 interface fa0/1
@@ -142,10 +142,10 @@ Applied inbound on the Sales sub-interface only — traffic from IT and Finance 
 | Inter-VLAN routing | PC2 (Finance, VLAN 30) | PC3 (Servers, VLAN 40) | ✅ Success — 0% loss |
 | ACL enforcement | PC1 (Sales, VLAN 20) | PC3 (Servers, VLAN 40) | ❌ Blocked — Destination host unreachable (as designed) |
 
-![IT to Finance]
-![IT to Servers]
-![Finance to Servers]
-![Sales to Servers - Blocked by ACL])
+![IT to Finance](./screenshots/07-ping-pc0-pc2.png)
+![IT to Servers](./screenshots/08-ping-pc0-pc3.png)
+![Finance to Servers](./screenshots/09-ping-pc2-pc3.png)
+![Sales to Servers - Blocked by ACL](./screenshots/10-ping-pc1-pc3-blocked.png)
 
 The blocked test returns a reply from `192.168.100.65` (the Sales gateway on Router0) stating "Destination host unreachable" — confirming the router itself is enforcing the ACL rule rather than the packet simply timing out.
 
@@ -165,4 +165,4 @@ The blocked test returns a reply from `192.168.100.65` (the Sales gateway on Rou
 
 ## Author
 
-Faraz — IT Engineer (Networking, Systems & Cloud) in training, preparing for IT Infrastructure roles.
+Faraz — IT Engineer (Networking, Systems & Cloud) in training, preparing for IT Infrastructure roles
